@@ -1,17 +1,17 @@
 from transformers import pipeline
 
-summarizer = pipeline("summarization")
+# Model load once
+summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-12-6")
 
-text = """
-India is a country in South Asia. It is the seventh-largest country by area, 
-the most populous country as of 2023, and the most populous democracy in the world. 
-Bounded by the Indian Ocean on the south, the Arabian Sea on the southwest, 
-and the Bay of Bengal on the southeast, it shares land borders with Pakistan to the west, 
-China, Nepal, and Bhutan to the north; and Bangladesh and Myanmar to the east.
-"""
+def summarize_text(text, length="medium"):
+    if length == "short":
+        max_len, min_len = 50, 25
+    elif length == "long":
+        max_len, min_len = 250, 150
+    else:  # default = medium
+        max_len, min_len = 120, 60
 
-summary = summarizer(text, max_length=50, min_length=25, do_sample=False)
-
-print("\n--- Summary ---\n", summary[0]['summary_text'])
+    summary = summarizer(text, max_length=max_len, min_length=min_len, do_sample=False)[0]['summary_text']
+    return summary
 
 
