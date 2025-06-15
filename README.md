@@ -22,5 +22,6 @@ A simple Python-based tool that summarizes lengthy articles or paragraphs using 
 ---
 
 ## 📂 File Structure
-
+##OUTPUT
+![Image](https://github.com/user-attachments/assets/7226c87a-2ac2-48aa-80ae-404a0f30fca1)
 
